@@ -22,19 +22,19 @@ The demo contains:
 
 - Navigation component
 
-# Setup
+## Setup
 
-## Requirements
+### Requirements
 
 - Java (JDK)
 
 - [Magnolia CLI](https://www.npmjs.com/package/@magnolia/cli) installed ([installation documentation](https://documentation.magnolia-cms.com/display/DOCS/Magnolia+CLI+v3))
 
-## Install Magnolia with Magnolia CLI
+### Install Magnolia with Magnolia CLI
 
 In a terminal, navigate to the `magnolia` directory and run:
 
-```
+```bash
 mgnl jumpstart
 ```
 
@@ -45,24 +45,24 @@ Choose `magnolia-community-demo-webapp` or `magnolia-dx-core-demo-webapp` as the
 
 (Magnolia is downloaded.)
 
-## Add the demo light modules to Magnolia
+### Add the demo light modules to Magnolia
 
 Nothing to do here!
 (The Magnolia instance is pre-configured to access the existing 'light-modules' directory.)
 
-## Start Magnolia
+### Start Magnolia
 
 From within the `magnolia` start Magnolia with:
 
-```
+```bash
 mgnl start
 ```
 
 Once the terminal shows `Server startup in X ms`
 
-In your browser, open Magnolia at: http://localhost:8080/magnoliaAuthor/
+In your browser, open Magnolia at: <http://localhost:8080/magnoliaAuthor/>
 
-## Accessing Magnolia
+### Accessing Magnolia
 
 You can log in to Magnolia using the credentials **_username: `superuser`,
 password: `superuser`._**
@@ -90,138 +90,34 @@ Open the Security app, open the `Roles` tab, edit the `rest-anonymous` role, go 
 
 In `Access control lists` tab modify `Dam` workspace by allowing `Read-only` access to `Selected and sub nodes` to `/`.
 
-# Deploy your SPA
+## Deploy your SPA
 
 Build and deploy the SPA to make it available for editing.
 
 (These demos use a fully headless approach where the frontends are running on their own servers. If you would like to host the frontend as a bundle in a Magnolia light module see [README-host-in-light-module](README-host-in-light-module.md).
 )
 
-### React
+### Remix
 
-Go to `/spa/react-minimal` on the terminal and run `npm install`, and then `npm run start`.
+Go to `/spa/remix-minimal` on the terminal and run `npm install`, and then `npm run dev`.
 
-See the `.env` files for important configurations.
+It will start start the Remix server.
 
-### Angular
+All Magnolia specific configurations can be find in `app/routes/index.tsx` file.
 
-Go to `/spa/angular-minimal` on the terminal and run `npm install`, and then `ng serve`.
-
-See the files in `/src/environments` for important configurations.
-
-### Vue
-
-Go to `/spa/vue-minimal` on the terminal and run `npm install`, and then `npm run serve`.
-
-See the `.env` files for important configurations.
-
-### Next.js SSR
-
-Go to `/spa/nextjs-ssr-minimal` on the terminal and run `npm install`, and then `npm run build && npm start`.
-
-It will start start the Next.js server.
-
-All Magnolia specific configurations can be find in `[[...pathname]].js` file.
-
-### Next.js SSG
-
-You will need to create a root page with the `Next.js SSG: Basic` template and name it `nextjs-ssg-minimal`.
-
-Go to `/spa/nextjs-ssg-minimal` on the terminal and run `npm install`, and then `npm run build && npm start`.
-
-It will start start the Next.js server with API for `Preview Mode`.
-
-All Magnolia specific configurations can be find in `[[...pathname]].js` file.
-
-To build static sites you must run `NEXT_PUBLIC_MGNL_HOST=http://localhost:8080/magnoliaPublic npm run build && npm run export`. You can configure your pipeline to run such job on content publication.
-
-### Nuxt SSR
-
-> Nuxt uses Vue 2, so the example uses [@magnolia-services/vue2-editor](https://www.npmjs.com/package/@magnolia-services/vue2-editor)
-
-Create a root page with the `Nuxt SSR: Basic` template and name it `nuxtjs-ssr-minimal`.
-
-Go to `/spa/nuxtjs-ssr-minimal` on the terminal and run `npm install`, and then `npm run build && npm start`.
-
-It will start start the Nuxt server.
-
-All Magnolia specific configurations can be find in `_.vue` file.
-
-# Create Sample Content
+## Create Sample Content
 
 **_Either_** import some content, or create it manually.
 
-### Import:
+### Import
 
 **_In the Pages app_**, Use the 'Import' action (with nothing selected) and select the appropriate file from `/magnolia/_dev/content-to-import/`, depending on which 'flavor' you are using.
 
-### Manually:
+### Manually
 
-Open the `Pages` app in Magnolia and **_click Add Page_** add either
-
-- A `React: Basic` **_template_** and name it `react-minimal`
-- A `Angular: Basic` **_template_** and name it `angular-minimal`
-- A `Vue: Basic` **_template_** and name it `vue-minimal`
-- A `Next.js SSR: Basic` **_template_** and name it `nextjs-ssr-minimal`
-- A `Next.js SSG: Basic` **_template_** and name it `nextjs-ssg-minimal`
+Open the `Pages` app in Magnolia and **_click Add Page_** add a `Remix: Basic` **_template_** and name it `remix-minimal`
 
 > The page name is important as the SPA's are hardcoded to treat those names as the base of the app.
 
 Then add components into the `Main` or `Extras` area of the page.
 You can also add additional pages as children of that page.
-
-# Personalization Demo (Only available on DX-CORE)
-
-Not available on Community Edition.
-
-Currently, personalization feature demo is only available in `react-minimal` sample.
-
-[Overview of Magnolia Personalization](https://docs.magnolia-cms.com/product-docs/6.2/Features/Personalization.html)
-
-## Demo Scenario
-
-Show different content based on the age group of the visitor.
-The information of the visitors age could come from anywhere, for example an external CDP, CRM, or Marketing automation system.
-
-For this simple demo, the visitor can enter their age in a form on the page. The app stores their age as well as their age group (Child, Adult, Senior) in browser Session Storage.
-
-From then on, the app always includes an `X-Mgnl-Age` header (with the age group) in it's requests to the REST delivery endpoint.
-
-Content authors have created content variants with different messages for each age group. They have selected an 'audience' for each variant based on the 'Age' trait configured on the system.
-
-## Technical notes
-
-- The trait is provisioned with `/light-modules/spa-lm/traits/x-mgnl-age.yaml`.
-- The session value is set in `/spa/react-minimal/src/components/AgeForm.js`.
-- The header is set in `/spa/react-minimal/src/helpers/PageLoader.js`.
-
-## Setup - Create personalized content
-
-Either import some content, or create it manually.
-
-Open the `Pages` app in Magnolia and select the `react-minimal` page.
-
-### Import:
-
-Use the `Import` action, browse to `/magnolia/_dev/content-to-import/`, select `website.react-minimal.personalization.yaml` and import it.
-
-### Manually:
-
-Or instead of importing,
-
-- Use the `Add page` action.
-- Choose the `React: Personalization` template and save.
-- Create a component in the `Main` area.
-- Use the `Add component variant` action and edit the component variant content.
-- Use the `Choose audience` action.
-- Under 'Choose traits of audience' click `Add`, pick the `Age (Minimal headless demo)` trait.
-- In the new `Age` select box choose one of the ages.
-- Repeat for other variants, ideally supplying one for the `Child`, `Adult`, and `Senior` traits.
-
-## Usage
-
-- Run the app outside of the Page Editor. (ie on the React dev server with http://localhost:3000) Enter your age to see personalized content.
-- Use the Page Editor to edit the content of the variants.
-- Use the `Preview page` action to view _unpersonalized_ content.
-- Use the `Preview in tab` green button to see personalized content based on age form.
-- Use the `Preview as visitor` to impersonate different users. For example use the `Add` action to add a user trait, like `Age`.
