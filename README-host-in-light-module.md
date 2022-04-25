@@ -10,7 +10,7 @@ Build and deploy the SPA to make it available for editing.
 
 Go to `/spa/remix-minimal` on the terminal and run `npm install`.
 
-See the `.env` files for important configurations.
+See the `.env.example` files for important configurations.
 
 Start Magnolia up with `mgnl start`.
 

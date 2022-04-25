@@ -99,7 +99,7 @@ Build and deploy the SPA to make it available for editing.
 
 ### Remix
 
-Go to `/spa/remix-minimal` on the terminal and run `npm install`, and then `npm run dev`.
+Go to `/spa/remix-minimal` on the terminal and run `npm install`, specify important environment variables (see `/spa/remix-minimal/.env.example`), and then `npm run dev`.
 
 It will start start the Remix server.
 
